@@ -136,14 +136,9 @@ void main() {
     vec3 v = normalize(viewPos - P);
     vec3 r = reflect(-l, n);
 
-    // Iluminação difusa e especular
     float diff = max(dot(n,l), 0.0);
     float spec = pow(max(dot(r,v), 0.0), 64.0); 
-
-    // Textura opcional misturada
     vec3 baseTex = texture(tex0, uvMap(P * 2.0)).rgb;
-
-    // Cor principal vermelha do dragão
     vec3 dragonColor = vec3(1.0, 0.1, 0.1);
     vec3 col = 0.1 * dragonColor + diff * dragonColor + spec * vec3(1.0,0.5,0.5);
 
@@ -179,15 +174,15 @@ GLuint CreateFurTexture(int size = 512) {
     for (int y = 0; y < size; y++)
         for (int x = 0; x < size; x++) {
 
-          
+
             float nx = (float)x / size;
             float ny = (float)y / size;
             float noise = (sin(nx * 20.0f) + sin(ny * 25.0f)) * 0.25f + 0.5f;
 
-            
-            unsigned char r = (unsigned char)(50+ noise * 50);  
-            unsigned char g = (unsigned char)(80 + noise * 60);  
-            unsigned char b = (unsigned char)(180 + noise * 50);  
+
+            unsigned char r = (unsigned char)(50 + noise * 50);
+            unsigned char g = (unsigned char)(80 + noise * 60);
+            unsigned char b = (unsigned char)(180 + noise * 50);
 
             int i = (y * size + x) * 3;
             img[i + 0] = r;
@@ -245,7 +240,7 @@ bool LoadOBJ(const char* path,
         for (auto& i : s.mesh.indices) {
             Vertex v{};
             int vi = i.vertex_index * 3;
-        int ni = i.normal_index * 3;
+            int ni = i.normal_index * 3;
             v.px = attrib.vertices[vi];
             v.py = attrib.vertices[vi + 1];
             v.pz = attrib.vertices[vi + 2];
