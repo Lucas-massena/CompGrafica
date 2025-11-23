@@ -169,15 +169,12 @@ GLuint CreateFurTexture(int size = 512) {
     for (int y = 0; y < size; y++)
         for (int x = 0; x < size; x++) {
 
-            // Ruído simples para variação suave na cor
             float nx = (float)x / size;
             float ny = (float)y / size;
             float noise = (sin(nx * 20.0f) + sin(ny * 25.0f)) * 0.25f + 0.5f;
-
-            // Cores típicas de coelho marrom claro/bege
-            unsigned char r = (unsigned char)(50+ noise * 50);  // tons entre 170–210
-            unsigned char g = (unsigned char)(80 + noise * 60);  // tons entre 140–175
-            unsigned char b = (unsigned char)(180 + noise * 50);  // tons entre 110–140
+            unsigned char r = (unsigned char)(50+ noise * 50);  
+            unsigned char g = (unsigned char)(80 + noise * 60);  
+            unsigned char b = (unsigned char)(180 + noise * 50);  
 
             int i = (y * size + x) * 3;
             img[i + 0] = r;
